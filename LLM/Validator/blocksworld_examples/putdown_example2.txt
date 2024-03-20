@@ -1,0 +1,18 @@
+Question:
+Block current state: 
+(on b1 b3)
+(in-hand b2)
+(on-table b3)
+Examined action:
+(putdown b2)
+
+Answer:
+Preconditions of (putdown b2):
+1. Is b2 in hand?
+Yes, since (in-hand b2).
+Can we apply the action?
+Yes, this leads to the following new state:
+(on b1 b3)
+(on-table b2)
+(on-table b3)
+

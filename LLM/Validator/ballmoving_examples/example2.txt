@@ -1,0 +1,39 @@
+Question:
+Robot and ball initial state: 
+(robot-at robot1 room2)
+(at ball1 room2)
+(at ball2 room1)
+(at ball3 room3)
+Goal state:
+(at ball1 room1)
+(at ball2 room1)
+(at ball3 room3)
+Examined action sequence:
+(move robot1 room2 room1)
+(pick ball1 room1)
+(move robot1 room1 room2)
+(drop ball1 room2)
+(pick ball2 room1)
+(move robot1 room2 room1)
+(drop ball2 room1)
+
+Answer:
+Analysis:
+Initial state: (robot-at robot1 room2), (at ball1 room2), (at ball2 room1), (at ball3 room3)
+
+(move robot1 room2 room1) 
+precondition: (robot-at robot1 room2)
+current state: (robot-at robot1 room2)
+current state is the same as the precondition, action is correct
+change state to: (robot-at robot1 room1), (at ball1 room2), (at ball2 room1), (at ball3 room3)
+
+(pick ball1 room1) 
+precondition 1: (at ball1 room1)
+current state: (at ball1 room2)
+current state is not the same as the precondition 1
+preconditions are not fullfilled, action is wrong
+analysis stops due to error
+
+Final answer:
+No, the action sequence is wrong, it cannot accomplish the goal.
+

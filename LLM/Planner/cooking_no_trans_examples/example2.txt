@@ -1,0 +1,38 @@
+I have 5 pots and 6 different ingredients. Each ingredient can only be picked up once. Your goal is to add ingredients to pots by following the receipts: pot1 contains ingredient3, ingredient4, ingredient5. pot2 contains ingredient1, ingredient2, ingredient3, ingredient6. pot3 contains ingredient2, ingredient3, ingredient5. pot4 contains ingredient1, ingredient6. pot5 contains ingredient1, ingredient3, ingredient4, ingredient5.
+
+Action Sequence:
+Step 1: ingredient1 is needed in pot2, pot4, pot5
+(pick ingredient1)
+(add ingredient1 pot2)
+(add ingredient1 pot4)
+(add ingredient1 pot5)
+(putdown ingredient1)
+Step 2: ingredient2 is needed in pot2, pot3
+(pick ingredient2)
+(add ingredient2 pot2)
+(add ingredient2 pot3)
+(putdown ingredient2)
+Step 3: ingredient3 is needed in pot1, pot2, pot3, pot5
+(pick ingredient3)
+(add ingredient3 pot1)
+(add ingredient3 pot2)
+(add ingredient3 pot3)
+(add ingredient3 pot5)
+(putdown ingredient3)
+Step 4: ingredient4 is needed in pot1, pot5
+(pick ingredient4)
+(add ingredient4 pot1)
+(add ingredient4 pot5)
+(putdown ingredient4)
+Step 5: ingredient5 is needed in pot1, pot3, pot5
+(pick ingredient5)
+(add ingredient5 pot1)
+(add ingredient5 pot3)
+(add ingredient5 pot5)
+(putdown ingredient5)
+Step 6: ingredient6 is needed in pot2, pot4
+(pick ingredient6)
+(add ingredient6 pot2)
+(add ingredient6 pot4)
+(putdown ingredient6)
+All ingredients have been added to the corresponding pots.

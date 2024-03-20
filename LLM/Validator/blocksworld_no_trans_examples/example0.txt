@@ -1,0 +1,22 @@
+Question:
+I have 3 blocks. Initially: Block b1 is on the table. Block b2 is on top of b1. Block b3 is on top of b2. Your goal is to move the blocks such that they are stacked in the order: b1 on b2, b2 on b3, and b3 on table.
+Examined action sequence:
+(unstack b3 b2)
+(putdown b3)
+(unstack b2 b1)
+(putdown b2)
+(unstack b1 b2)
+(putdown b1)
+
+Answer:
+Analysis:
+Initial: b1 on the table, b2 on b1, b3 on b2
+(unstack b3 b2) result: b1 on the table, b2 on b1, b3 in the hand
+(putdown b3) result: b1 on the table, b2 on b1, b3 on the table
+(unstack b2 b1) result: b1 on the table, b2 in hand, b3 on the table
+(putdown b2) result: b1 on the table, b2 on the table, b3 on the table
+(unstack b1 b2) result: the action is wrong since b1 is not on top of b2
+analysis stops due to error
+Final answer:
+No, the action sequence is wrong, it cannot accomplish the goal.
+

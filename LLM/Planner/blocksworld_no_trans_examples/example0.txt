@@ -1,0 +1,15 @@
+I have 3 blocks. Initially: Block b1 is on the table. Block b2 is on the table. Block b3 is on top of b1. Your goal is to move the blocks such that they are stacked in the order: b1 on b2, b2 on b3, and b3 on table.
+
+Action Sequence:
+We need to build the blocks from bottom to top.
+Third goal: b3 on table
+(unstack b3 b1)
+(putdown b3)
+Second goal: b2 on b3
+(pickup b2)
+(stack b2 b3)
+First goal: b1 on b2
+(pickup b1)
+(stack b1 b2)
+
+

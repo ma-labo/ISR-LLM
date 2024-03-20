@@ -1,0 +1,34 @@
+Question:
+Block initial state: 
+(on b1 b2)
+(on b2 b3)
+(on-table b3)
+Goal state:
+(on b1 b3)
+(on b3 b2)
+(on-table b2)
+Examined action sequence:
+(unstack b1 b2)
+(putdown b1)
+(pickup b1)
+(stack b1 b3)
+(unstack b3 b2)
+(putdown b3)
+(pickup b3)
+(stack b3 b2)
+(unstack b2 b3)
+(putdown b2)
+(pickup b2)
+(stack b2 b3)
+
+Answer:
+Analysis:
+Initial: b1 on b2, b2 on b3, b3 on the table
+(unstack b1 b2) result: b1 in hand, b2 on b3, b3 on the table
+(putdown b1) result: b1 on the table, b2 on b3, b3 on the table
+(pickup b1) result: b1 in hand, b2 on b3, b3 on the table
+(stack b1 b3) result: the action is wrong since b3 is not clear to move
+analysis stops due to error
+Final answer:
+No, the action sequence is wrong, it cannot accomplish the goal.
+

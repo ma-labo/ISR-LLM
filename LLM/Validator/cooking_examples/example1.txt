@@ -1,0 +1,79 @@
+Question:
+Initial state: 
+(arm-empty)
+(pot-empty pot1)
+(pot-empty pot2)
+(pot-empty pot3)
+Goal state:
+(contain pot1 ingredient1)
+(contain pot1 ingredient2)
+(contain pot1 ingredient3)
+(contain pot1 ingredient6)
+(contain pot2 ingredient2)
+(contain pot2 ingredient4)
+(contain pot3 ingredient2)
+(contain pot3 ingredient3)
+(contain pot3 ingredient5)
+Examined action sequence:
+(pick ingredient1)
+(add ingredient1 pot1)
+(putdown ingredient1)
+(pick ingredient2)
+(add ingredient2 pot1)
+(add ingredient2 pot2)
+(add ingredient2 pot3)
+(putdown ingredient2)
+(pick ingredient2)
+(add ingredient2 pot1)
+(add ingredient2 pot3)
+(putdown ingredient2)
+(pick ingredient4)
+(add ingredient4 pot2)
+(putdown ingredient4)
+(pick ingredient6)
+(add ingredient6 pot1)
+(putdown ingredient6)
+
+Answer:
+Analysis:
+Initial state: 
+pot1: empty
+pot2: empty
+pot3: empty
+
+(pick ingredient1) result: ingredient1 in hand
+
+(add ingredient1 pot1) result: 
+pot1: ingredient1
+pot2: empty
+pot3: empty
+
+(putdown ingredient1) result: hand empty
+ingredient has been picked: ingredient1
+
+(pick ingredient2) result: ingredient2 in hand
+
+(add ingredient2 pot1) result:
+pot1: ingredient1, ingredient2
+pot2: empty
+pot3: empty
+
+(add ingredient2 pot2) result:
+pot1: ingredient1, ingredient2
+pot2: ingredient2
+pot3: empty
+
+(add ingredient2 pot3) result:
+pot1: ingredient1, ingredient2
+pot2: ingredient2
+pot3: ingredient2
+
+(putdown ingredient2) result: hand empty
+ingredient has been picked: ingredient1, ingredient2
+
+(pick ingredient2) result:
+action is wrong since ingredient2 has already been picked 
+
+Final answer:
+No, the action sequence is wrong, it cannot accomplish the goal.
+

@@ -1,0 +1,62 @@
+Domain file:
+(define (domain blocksworld)
+(:predicates 
+(clear ?x)
+(on ?x ?y)
+(on-table ?x)
+(arm-empty)
+(holding ?x)
+)
+(:action pickup
+  :parameters (?ob)
+  :precondition (and (clear ?ob) (on-table ?ob) (arm-empty))
+  :effect (and (holding ?ob) (not (clear ?ob)) (not (on-table ?ob)) (not (arm-empty)))
+)
+(:action putdown
+  :parameters  (?ob)
+  :precondition (holding ?ob)
+  :effect (and (clear ?ob) (arm-empty) (on-table ?ob) (not (holding ?ob)))
+)
+(:action stack
+  :parameters  (?ob ?underob)
+  :precondition (and (clear ?underob) (holding ?ob))
+  :effect (and (arm-empty) (clear ?ob) (on ?ob ?underob) (not (clear ?underob)) (not (holding ?ob)))
+)
+(:action unstack
+  :parameters  (?ob ?underob)
+  :precondition (and (on ?ob ?underob) (clear ?ob) (arm-empty))
+  :effect (and (holding ?ob) (clear ?underob) (not (on ?ob ?underob)) (not (clear ?ob)) (not (arm-empty))))
+)
+Problem file:
+(define (problem threeblocks)
+(:domain blocksworld)
+(:objects b1 b2 b3)
+(:init 
+(arm-empty)
+(on-table b1)
+(on b2 b3)
+(on-table b3)
+(clear b1)
+(clear b2)
+)
+(:goal
+(and 
+(on b2 b1)
+(on b1 b3)
+(on-table b3))
+)
+
+Action Sequence:
+We need to build the blocks from bottom to top.
+Third goal: b3 on table
+Already satisfied in initial configuration
+Second goal: b1 on b3
+(unstack b2 b3)
+(putdown b2)
+(pickup b1)
+(stack b1 b3)
+First goal: b2 on b1
+(pickup b2)
+(stack b2 b1)
+
+

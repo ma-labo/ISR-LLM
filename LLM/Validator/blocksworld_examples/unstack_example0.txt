@@ -1,0 +1,19 @@
+Question:
+Block current state: 
+(on-table b1)
+(in-hand b2)
+(on b3 b1)
+Examined action:
+(unstack b3 b1)
+
+Answer:
+Preconditions of (unstack b3 b1):
+1. Is hand empty?
+No, since (in-hand b2), b2 is in hand.
+2. Is b3 clear?
+Yes, since no block is on top of b3.
+3. Is (on b3 b1)?
+Yes, (on b3 b1) is in the current state.
+Can we apply the action?
+No, hand is not empty. 
+

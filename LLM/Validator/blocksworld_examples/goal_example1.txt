@@ -1,0 +1,15 @@
+Question:
+Block current state: 
+(on-table b1)
+(on b2 b1)
+(on-table b3)
+Goal:
+(on b3 b2)
+(on b2 b1)
+(on-table b1)
+
+Answer:
+The goal is: b3 on b2, b2 on b1, and b1 on the table.
+The current state is: b1 on the table, b2 on b1, b3 on the table.
+Is the goal satisfied?
+No, the current state is not the same as the goal.

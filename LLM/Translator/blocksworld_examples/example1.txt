@@ -1,0 +1,52 @@
+I have 4 blocks. Initially: Block b1 is on the table. Block b2 is on top of b4. Block b3 is on top of b1. Block b4 is on the table. Your goal is to move the blocks such that they are stacked in the order: b3 on b2, b2 on b1, b1 on b4, and b4 on table. 
+
+Domain file:
+(define (domain blocksworld)
+(:predicates 
+(clear ?x)
+(on ?x ?y)
+(on-table ?x)
+(arm-empty)
+(holding ?x)
+)
+(:action pickup
+  :parameters (?ob)
+  :precondition (and (clear ?ob) (on-table ?ob) (arm-empty))
+  :effect (and (holding ?ob) (not (clear ?ob)) (not (on-table ?ob)) (not (arm-empty)))
+)
+(:action putdown
+  :parameters  (?ob)
+  :precondition (holding ?ob)
+  :effect (and (clear ?ob) (arm-empty) (on-table ?ob) (not (holding ?ob)))
+)
+(:action stack
+  :parameters  (?ob ?underob)
+  :precondition (and (clear ?underob) (holding ?ob))
+  :effect (and (arm-empty) (clear ?ob) (on ?ob ?underob) (not (clear ?underob)) (not (holding ?ob)))
+)
+(:action unstack
+  :parameters  (?ob ?underob)
+  :precondition (and (on ?ob ?underob) (clear ?ob) (arm-empty))
+  :effect (and (holding ?ob) (clear ?underob) (not (on ?ob ?underob)) (not (clear ?ob)) (not (arm-empty))))
+)
+Problem file:
+(define (problem fourblocks)
+(:domain blocksworld)
+(:objects b1 b2 b3 b4)
+(:init 
+(arm-empty)
+(on-table b1)
+(on b2 b4)
+(on b3 b1)
+(on-table b4)
+(clear b2)
+(clear b3)
+)
+(:goal
+(and
+(on b3 b2)
+(on b2 b1)
+(on b1 b4)
+(on-table b4))
+)
+

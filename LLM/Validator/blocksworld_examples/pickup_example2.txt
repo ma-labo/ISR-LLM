@@ -1,0 +1,19 @@
+Question:
+Block current state: 
+(on-table b1)
+(on b2 b1)
+(on-table b3)
+Examined action:
+(pickup b1)
+
+Answer:
+Preconditions of (pickup b1):
+1. Is hand empty?
+Yes, no block is in hand.
+2. Is b1 clear?
+No, since (on b2 b1), b2 is on top of b1.
+3. Is b1 on table?
+Yes, since (on-table b1).
+Can we apply the action?
+No, b1 is not clear to move.
+

@@ -1,0 +1,47 @@
+I have 4 balls within 4 rooms. Initially: Robot is in room3. Ball ball1 is in room1. Ball ball2 is in room3. Ball ball3 is in room1. Ball ball4 is in room2. Your goal is to move the balls to specific rooms: ball1 in room3, ball2 in room2, ball3 in room4, and ball4 in room4.
+
+Domain file:
+(define (domain ballmoving)
+(:types room ball robot)
+(:predicates 
+(robot-at ?r - robot ?x - room)
+(at ?b - ball ?x - room)
+(arm-empty)
+(carry ?r -robot ?b - ball)
+)
+(:action move
+  :parameters (?r - robot ?from ?to - room)
+  :precondition (and (robot-at ?r ?from))
+  :effect (and (robot-at ?r ?to) (not (robot-at ?r ?from)))
+)
+(:action pick
+  :parameters  (?r - robot ?b - ball ?room - room)
+  :precondition  (and (at ?b ?room) (robot-at ?r ?room) (arm-empty))
+  :effect (and (carry ?r ?b) (not (arm-empty)) (not (at ?b ?room))
+)
+(:action drop
+  :parameters  (?r - robot ?b -ball ?room -room)
+  :precondition (and (carry ?r ?b) (robot-at ?r ?room))
+  :effect (and (arm-empty) (at ?b ?room) (not (carry ?r ?b)))
+)
+Problem file:
+(define (problem fourballs)
+(:domain ballmoving)
+(:objects robot1 - robot
+room1 room2 room3 room4 - room
+ball1 ball2 ball3 ball4 - ball)
+(:init 
+(arm-empty)
+(robot-at robot1 room3)
+(at ball1 room1)
+(at ball2 room3)
+(at ball3 room1)
+(at ball4 room2)
+)
+(:goal
+(and 
+(at ball1 room3)
+(at ball2 room2)
+(at ball3 room4)
+(at ball4 room4))
+)

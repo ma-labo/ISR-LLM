@@ -1,0 +1,58 @@
+I have 5 pots and 6 different ingredients. Each ingredient can only be picked up once. Your goal is to add ingredients to pots by following the receipts: pot1 contains ingredient3, ingredient4, ingredient5. pot2 contains ingredient1, ingredient2, ingredient3, ingredient6. pot3 contains ingredient2, ingredient3, ingredient5. pot4 contains ingredient1, ingredient6. pot5 contains ingredient1, ingredient3, ingredient4, ingredient5.
+
+Domain file:
+(define (domain cooking)
+(:types pot ingredient)
+(:predicates 
+(arm-empty)
+(pot-empty ?p - pot)
+(holding ?i - ingredient)
+(contain ?p - pot ?i - ingredient)
+)
+(:action pick
+  :parameters (?i - ingredient)
+  :precondition (and (arm-empty))
+  :effect (and (holding ?i -ingredient) (not (arm-empty)))
+)
+(:action putdown
+  :parameters  (?i - ingredient)
+  :precondition  (and (holding ?i -ingredient))
+  :effect (and (not (holding ?i -ingredient)) (arm-empty))
+)
+(:action add
+  :parameters  (?i - ingredient ?p - pot)
+  :precondition (and (holding ?i -ingredient))
+  :effect (and (not (pot-empty ?p)) (contain ?p ?i))
+)
+Problem file:
+(define (problem fivepots)
+(:domain cooking)
+(:objects pot1 pot2 pot3 pot4 pot5 - pot
+ingredient1 ingredient2 ingredient3 ingredient4 ingredient5 ingredient6 - ingredient)
+(:init 
+(arm-empty)
+(pot-empty pot1)
+(pot-empty pot2)
+(pot-empty pot3)
+(pot-empty pot4)
+(pot-empty pot5)
+)
+(:goal
+(and 
+(contain pot1 ingredient3)
+(contain pot1 ingredient4)
+(contain pot1 ingredient5)
+(contain pot2 ingredient1)
+(contain pot2 ingredient2)
+(contain pot2 ingredient3)
+(contain pot2 ingredient6)
+(contain pot3 ingredient2)
+(contain pot3 ingredient3)
+(contain pot3 ingredient5)
+(contain pot4 ingredient1)
+(contain pot4 ingredient6)
+(contain pot5 ingredient1)
+(contain pot5 ingredient3)
+(contain pot5 ingredient4)
+(contain pot5 ingredient5))
+)

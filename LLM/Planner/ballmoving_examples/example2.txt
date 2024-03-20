@@ -1,0 +1,102 @@
+Domain file:
+(define (domain ballmoving)
+(:types room ball robot)
+(:predicates 
+(robot-at ?r - robot ?x - room)
+(at ?b - ball ?x - room)
+(arm-empty)
+(carry ?r -robot ?b - ball)
+)
+(:action move
+  :parameters (?r - robot ?from ?to - room)
+  :precondition (and (robot-at ?r ?from))
+  :effect (and (robot-at ?r ?to) (not (robot-at ?r ?from)))
+)
+(:action pick
+  :parameters  (?r - robot ?b - ball ?room - room)
+  :precondition  (and (at ?b ?room) (robot-at ?r ?room) (arm-empty))
+  :effect (and (carry ?r ?b) (not (arm-empty)) (not (at ?b ?room))
+)
+(:action drop
+  :parameters  (?r - robot ?b -ball ?room -room)
+  :precondition (and (carry ?r ?b) (robot-at ?r ?room))
+  :effect (and (arm-empty) (at ?b ?room) (not (carry ?r ?b)))
+)
+Problem file:
+(define (problem fiveballs)
+(:domain ballmoving)
+(:objects robot1 - robot
+room1 room2 room3 room4 - room
+ball1 ball2 ball3 ball4 ball5 - ball)
+(:init 
+(arm-empty)
+(robot-at robot1 room2)
+(at ball1 room1)
+(at ball2 room2)
+(at ball3 room4)
+(at ball4 room3)
+(at ball5 room4)
+)
+(:goal
+(and 
+(at ball1 room1)
+(at ball2 room1)
+(at ball3 room4)
+(at ball4 room2)
+(at ball5 room1))
+)
+
+Action Sequence:
+Step 1: 
+robot1 is now in room2. 
+(at ball1 room1) with goal (at ball1 room1)
+(at ball2 room2) with goal (at ball2 room1)
+(at ball3 room4) with goal (at ball3 room4)
+(at ball4 room3) with goal (at ball4 room2)
+(at ball5 room4) with goal (at ball5 room1)
+ball1 is satisfied, ball2 is unsatisfied, ball3 is satisfied, ball4 is unsatisfied, ball5 is unsatisfied.
+ball2 is in the same room with the robot1 and is unsatisfied.
+Go to complete ball2 
+(pick ball2 room2)
+(move robot1 room2 room1)
+(drop ball2 room1)
+Step 2:
+robot1 is now in room1. 
+(at ball1 room1) with goal (at ball1 room1)
+(at ball2 room1) with goal (at ball2 room1)
+(at ball3 room4) with goal (at ball3 room4)
+(at ball4 room3) with goal (at ball4 room2)
+(at ball5 room4) with goal (at ball5 room1)
+ball1 is satisfied, ball2 is satisfied, ball3 is satisfied, ball4 is unsatisfied, ball5 is unsatisfied.
+All balls that are in the same room with robot1 are satisfied.
+Go to complete next unsatisfied ball (from first to last): ball4
+(move robot1 room1 room3)
+(pick ball4 room3)
+(move robot1 room3 room2)
+(drop ball4 room2)
+Step 3:
+robot1 is now in room2.
+(at ball1 room1) with goal (at ball1 room1)
+(at ball2 room1) with goal (at ball2 room1)
+(at ball3 room4) with goal (at ball3 room4)
+(at ball4 room2) with goal (at ball4 room2)
+(at ball5 room4) with goal (at ball5 room1)
+ball1 is satisfied, ball2 is satisfied, ball3 is satisfied, ball4 is satisfied, ball5 is unsatisfied.
+All balls that are in the same room with robot1 are satisfied.
+Go to complete next unsatisfied ball (from first to last): ball5 
+(move robot1 room2 room4)
+(pick ball5 room4)
+(move robot1 room4 room1)
+(drop ball5 room1)
+Step 4:
+robot1 is now in room1.
+(at ball1 room1) with goal (at ball1 room1)
+(at ball2 room1) with goal (at ball2 room1)
+(at ball3 room4) with goal (at ball3 room4)
+(at ball4 room2) with goal (at ball4 room2)
+(at ball5 room1) with goal (at ball5 room1)
+ball1 is satisfied, ball2 is satisfied, ball3 is satisfied, ball4 is satisfied, ball5 is satisfied.
+All balls are satisfied.
+
+
+

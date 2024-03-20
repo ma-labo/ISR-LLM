@@ -1,0 +1,17 @@
+Question:
+Block current state: 
+(on b1 b2)
+(on-table b2)
+(on b3 b1)
+Examined action:
+(stack b1 b2)
+
+Answer:
+Preconditions of (stack b1 b2):
+1. Is b1 in hand?
+No, no block is in hand.
+2. Is b2 clear?
+No, since (on b1 b2), b1 is on top of b2.
+Can we apply the action?
+No, b1 is not in hand.
+
