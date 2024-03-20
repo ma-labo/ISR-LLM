@@ -506,7 +506,7 @@ if __name__=="__main__":
     # parameters
     parser = argparse.ArgumentParser(description="LLM-Task-Planner")
     parser.add_argument('--domain', type=str, choices=DOMAINS, default="blocksworld")
-    parser.add_argument('--method', type=str, choices=METHODS, default="LLM_no_trans")
+    parser.add_argument('--method', type=str, choices=METHODS, default="LLM_trans_exact_feedback")
     parser.add_argument('--model', type=str, choices=MODELS, default="gpt-3.5-turbo")
     parser.add_argument('--logdir', type=str, default=None)
     parser.add_argument('--num_objects', type=int, choices=[3,4], default=3)
